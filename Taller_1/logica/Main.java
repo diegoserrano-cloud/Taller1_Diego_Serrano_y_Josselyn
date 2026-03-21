@@ -1,6 +1,6 @@
 /*
- * Nombres: Diego Serrano Fuentes, Josselyne
- * Rut(s): 22.105.561-6 | 
+ * Nombres: Diego Serrano Fuentes, Josselyn Barraza Yáñez
+ * Rut(s): 22.105.561-6 | 22.246.539-7
  * Carrera: ICCI
  * Taller: Taller N° 1 POO
  */
@@ -41,13 +41,28 @@ public class Main {
             }	
 			
 			//Aquí vamos a hacer un Switch case (para los números del menú)
-			
+			switch(op) {
+			case 1: 
+            	opcion.nextLine();
+            	System.out.print("Usuario: ");
+            	String nombre = opcion.nextLine();// segun el nombre que nos den usamos la contraseña
+            	
+            	if (nombre.equalsIgnoreCase("Martin")) {
+            		System.out.print("Contraseña: ");
+            		String contraseña_Martin = opcion.nextLine(); 
+            		
+            	}else if (nombre.equalsIgnoreCase("Catalina")) {
+            		System.out.print("Contraseña: ");
+            		String contraseña_Catalina = opcion.nextLine(); 
+            		
+            	}else if (nombre.equalsIgnoreCase("Estefania")) {
+            		System.out.print("Contraseña: ");
+            		String contraseña_Estefania = opcion.nextLine(); 
+            	}	
+			}
 		} while (op != 3);
 			
 		opcion.close();
-		
-		
-		
 		
 	}
 }
