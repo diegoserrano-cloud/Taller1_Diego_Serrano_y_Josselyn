@@ -58,6 +58,9 @@ public class Main {
             	}else if (nombre.equalsIgnoreCase("Estefania")) {
             		System.out.print("Contraseña: ");
             		String contraseña_Estefania = opcion.nextLine(); 
+            	}else {
+            		System.out.println("Usuario invalido");
+            		System.out.println();
             	}	
 			}
 		} while (op != 3);
