@@ -106,6 +106,16 @@ public class Main {
         					+ "\n5) Salir.");
             		System.out.println();
             		opcion_usuario = opcion.nextInt();
+            		
+            		switch (opcion_usuario) {
+            		
+            		case 1:
+            			registrarActividad(nombre, opcion);
+            			break
+            		
+            		}
+            			
+            		
             		} while(opcion_usuario != 5);
 				}
 			//case 2:
@@ -116,4 +126,29 @@ public class Main {
 		opcion.close();
 		
 	}
+	
+	public static void registrarActividad(String nombre, Scanner sc) { //Scanner sc es para reutilizarlo (porqué ya existe)
+		try {
+			sc.nextLine(); //Limpia
+			
+			System.out.print("Ingrese fecha (dd/mm/yyyy): ");
+		    String fecha = sc.nextLine();
+
+		    System.out.print("Ingrese horas: ");
+		    int horas = sc.nextInt();
+		    sc.nextLine(); // limpiar buffer
+
+		    System.out.print("Ingrese actividad: ");
+		    String actividad = sc.nextLine();
+		    
+		    //Acá va el "BuffererWritter" para modificar el archivo
+		    
+		    
+			
+		} catch (IOException e) {
+			System.out.println("Error al ingresar los datos");
+		}
+		
+	}
+	
 }
