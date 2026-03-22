@@ -95,6 +95,9 @@ public class Main {
             		System.out.println("Usuario invalido");
             		System.out.println();
             	}if(condicion) {
+					int opcion_usuario;
+            		do {
+					opcion.nextLine();
             		System.out.println("Acceso correcto!");
             		System.out.println();
             		System.out.println("Bienvenido"+ " " + nombre + "!");
@@ -107,6 +110,8 @@ public class Main {
         					+ "\n4) Cambiar contraseña."
         					+ "\n5) Salir.");
             		System.out.println();
+            		opcion_usuario = opcion.nextInt();
+            		}while(opcion_usuario != 5);
 				}
 			}
 		} while (op != 3);
