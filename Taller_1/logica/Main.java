@@ -96,9 +96,10 @@ public class Main {
             		System.out.println();
             	}if(condicion) {
 					int opcion_usuario;
+					System.out.println("Acceso correcto!");
             		do { // este do while nos sirve para que el usuario indique cuando quiere salir 
 					opcion.nextLine();
-            		System.out.println("Acceso correcto!");
+            		
             		System.out.println();
             		System.out.println("Bienvenido"+ " " + nombre + "!");
             		System.out.println();
