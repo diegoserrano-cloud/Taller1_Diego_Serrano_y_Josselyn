@@ -8,9 +8,12 @@
 package logica;
 
 import java.util.Scanner;
-
+import java.io.FileWriter; 
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.File;
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException  {
 		File Tusuarios = new File("C:\\Users\\Alumno\\eclipse-workspace\\Taller_1\\usuarios");
 		
 		Scanner lector = new Scanner(Tusuarios);// lee las lineas
