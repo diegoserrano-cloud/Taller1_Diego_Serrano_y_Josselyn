@@ -28,7 +28,7 @@ public class Main {
 			String contraseña = partes[1];
 			contraseñas[i] = contraseña;
 			if (i < 3) {
-				++i;}
+				i++;}
 		}
 		int a;
 		for (a = 0; a< nombres.length; a++){ // esto solo es para guiarnos con las contraseñas despues se eliminara
@@ -55,7 +55,7 @@ public class Main {
 					+ "\n3) Salir"
 					
 					);
-			if (opcion.hasNextInt()) {
+			if (opcion.hasNextInt()) { //Comprueba si es entero
                 op = opcion.nextInt(); 
             } else {
                 System.out.println("Ingrese un número válido"); //si es carácter arrojamos el mensaje
@@ -68,40 +68,34 @@ public class Main {
 			case 1: 
             	opcion.nextLine();
             	System.out.print("Usuario: ");
-            	String nombre = opcion.nextLine();// segun el nombre que nos den usamos la contraseña
-            	Boolean condicion = false;
-            	if (nombre.equalsIgnoreCase("Martin")) {
-            		System.out.print("Contraseña: ");
-            		String contraseña_Martin = opcion.nextLine();
-					if (contraseña_Martin.equals(contraseñas[0])) {
-            			condicion = true;
-            			System.out.println();
-					}
-            	}else if (nombre.equalsIgnoreCase("Catalina")) {
-            		System.out.print("Contraseña: ");
-            		String contraseña_Catalina = opcion.nextLine(); 
-					if (contraseña_Catalina.equals(contraseñas[1])) {
-            			condicion = true;
-            			System.out.println();
-					}
-            	}else if (nombre.equalsIgnoreCase("Estefania")) {
-            		System.out.print("Contraseña: ");
-            		String contraseña_Estefania = opcion.nextLine(); 
-					if (contraseña_Estefania.equals(contraseñas[2])) {
-            			condicion = true;
-            			System.out.println();
-					}	
-            	}else {
-            		System.out.println("Usuario invalido");
-            		System.out.println();
-            	}if(condicion) {
+            	String nombre = opcion.nextLine(); // segun el nombre que nos den usamos la contraseña
+            	boolean condicion = false;
+
+            	System.out.print("Contraseña: ");
+            	String contraseña = opcion.nextLine();
+            	
+            	int indexUsuario = -1; //Guardamos la posición para cambiar registros en el futuro
+
+            	for (int j = 0; j < nombres.length; j++) {
+            	    if (nombre.equalsIgnoreCase(nombres[j]) && contraseña.equals(contraseñas[j])) {
+            	        condicion = true;
+            	        indexUsuario = j;
+            	        break;
+            	    }
+            	}
+
+            	if (!condicion) { 
+            	    System.out.println("Usuario o contraseña incorrectos\n");
+            	}
+            	
+            	if(condicion) {
 					int opcion_usuario;
 					System.out.println("Acceso correcto!");
             		do { // este do while nos sirve para que el usuario indique cuando quiere salir 
 					opcion.nextLine();
             		
             		System.out.println();
-            		System.out.println("Bienvenido"+ " " + nombre + "!");
+            		System.out.println("Bienvenido " + nombre + "!");
             		System.out.println();
             		System.out.println("Que deseas realizar?");
             		System.out.println();
@@ -112,8 +106,10 @@ public class Main {
         					+ "\n5) Salir.");
             		System.out.println();
             		opcion_usuario = opcion.nextInt();
-            		}while(opcion_usuario != 5);
+            		} while(opcion_usuario != 5);
 				}
+			//case 2:
+				//Aquí va el menú de analisis
 			}
 		} while (op != 3);
 			
