@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Registros.txt</name>
+			<type>1</type>
+			<location>C:/Users/diego/Downloads/Registros.txt</location>
+		</link>
+		<link>
+			<name>Usuarios.txt</name>
+			<type>1</type>
+			<location>C:/Users/diego/Downloads/Usuarios.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>

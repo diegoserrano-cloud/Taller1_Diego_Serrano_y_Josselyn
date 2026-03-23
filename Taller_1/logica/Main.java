@@ -111,8 +111,10 @@ public class Main {
             		
             		case 1:
             			registrarActividad(nombre, opcion);
-            			break
+            			break;
             		
+            		case 2:
+            			modificarActividad(nombre, opcion);
             		}
             			
             		
@@ -151,4 +153,14 @@ public class Main {
 		
 	}
 	
+	public static void modificarActividad(String nombre, Scanner sc) {
+		
+		//Arreglos de máximo 300 datos (read.me)
+		String[] usuarios = new String[300]; 
+        String[] fechas = new String[300];
+        int[] horas = new int[300];
+        String[] actividades = new String[300];
+
+        int i = 0; //El objetivo es abrir el archivo de nuevo y hacer cambios ahí dentro
+	}
 }
