@@ -14,8 +14,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 public class Main {
 	public static void main(String[] args) throws IOException  {
-		File Tusuarios = new File("C:\\Users\\Alumno\\eclipse-workspace\\Taller_1\\usuarios");
-		File Tregistros = new File("C:\\Users\\Alumno\\eclipse-workspace\\Taller_1\\registros");
+		File Tusuarios = new File("Taller_1/Usuarios.txt");
+		File Tregistros = new File("Taller_1/Registros.txt");
 		Scanner lector = new Scanner(Tusuarios);// lee las lineas
 		String[] nombres= {"", "", ""};
 		String[] contraseñas= {"", "", ""};
@@ -92,7 +92,6 @@ public class Main {
 					int opcion_usuario;
 					System.out.println("Acceso correcto!");
             		do { // este do while nos sirve para que el usuario indique cuando quiere salir 
-					opcion.nextLine();
             		
             		System.out.println();
             		System.out.println("Bienvenido " + nombre + "!");
@@ -105,6 +104,7 @@ public class Main {
         					+ "\n4) Cambiar contraseña."
         					+ "\n5) Salir.");
             		System.out.println();
+            		
             		opcion_usuario = opcion.nextInt();
             		
             		switch (opcion_usuario) {
@@ -134,8 +134,27 @@ public class Main {
 			sc.nextLine(); //Limpia
 			
 			System.out.print("Ingrese fecha (dd/mm/yyyy): ");
-		    String fecha = sc.nextLine();
+		    String fecha;
+		    
+		    do {
+		    	System.out.print("Ingrese fecha (dd/mm/yyyy): ");
+	            fecha = sc.nextLine();
+		    	
+	            /*
+	             * En resumen la función ".matches()" compara los valores entre un rango y un formato, en este caso
+	             * el "0[1-9]" toma el 0 y al lado de él acepta cualquier valor que esté entre 0 y 9, pero si es diferente el programa 
+	             * lo reinicia y el "|" es parecido al 'and' del python (espero se haya entendido la explicación)
+	             */
+	            
+	            if (!fecha.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}")) { //Aprobado por el ayudante
+	                System.out.println("Fecha no válida. Use dd/mm/yyyy (Día 01-31, Mes 01-12)");
+	            }
+	            
+	            } while(!fecha.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}"));
 
+	            
+		    
+		    
 		    System.out.print("Ingrese horas: ");
 		    int horas = sc.nextInt();
 		    sc.nextLine(); // limpiar buffer
@@ -144,7 +163,7 @@ public class Main {
 		    String actividad = sc.nextLine();
 		    
 		    //Acá va el "BuffererWritter" para modificar el archivo
-			BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\\\Users\\\\Alumno\\\\eclipse-workspace\\\\Taller_1\\\\registros", true));
+			BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt", true));
 		    bw.newLine();
 		    bw.write(nombre+";"+fecha+";"+horas+";"+actividad);
 		    bw.close();
