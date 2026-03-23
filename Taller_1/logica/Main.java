@@ -15,7 +15,7 @@ import java.io.File;
 public class Main {
 	public static void main(String[] args) throws IOException  {
 		File Tusuarios = new File("C:\\Users\\Alumno\\eclipse-workspace\\Taller_1\\usuarios");
-		
+		File Tregistros = new File("C:\\Users\\Alumno\\eclipse-workspace\\Taller_1\\registros");
 		Scanner lector = new Scanner(Tusuarios);// lee las lineas
 		String[] nombres= {"", "", ""};
 		String[] contraseñas= {"", "", ""};
@@ -144,7 +144,10 @@ public class Main {
 		    String actividad = sc.nextLine();
 		    
 		    //Acá va el "BuffererWritter" para modificar el archivo
-		    
+			BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\\\Users\\\\Alumno\\\\eclipse-workspace\\\\Taller_1\\\\registros", true));
+		    bw.newLine();
+		    bw.write(nombre+";"+fecha+";"+horas+";"+actividad);
+		    bw.close();
 		    
 			
 		} catch (IOException e) {
