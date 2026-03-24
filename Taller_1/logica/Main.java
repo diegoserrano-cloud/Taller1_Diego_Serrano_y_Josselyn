@@ -224,15 +224,15 @@ public class Main {
 			System.out.println("0)Regresar");
 			if (nombre.equalsIgnoreCase("Martin")) {
 				for (a = 0; a< martin_T.length; a++){
-					System.out.println(martin_T[a]+ " ");
+					System.out.println(a+1 + ")"+martin_T[a]+ " ");
 				}
 			}else if (nombre.equalsIgnoreCase("Catalina")) {
 				for (a = 0; a< catalina_T.length; a++){
-					System.out.println(catalina_T[a]);
+					System.out.println(a+1 + ")"+catalina_T[a]);
 				}
 			}else if (nombre.equalsIgnoreCase("Estefania")) {
 				for (a = 0; a< estefania_T.length; a++){
-					System.out.println(estefania_T[a]);
+					System.out.println(a+1 + ")"+estefania_T[a]);
 				}
 			}
 		} while( op_Actividad != 0);
