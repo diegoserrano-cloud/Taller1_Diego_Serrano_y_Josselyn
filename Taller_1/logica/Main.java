@@ -204,7 +204,19 @@ public class Main {
 			
 			i++;}
 		lector_Registros.close();
-		
+		String[] martin_T= new String[300];
+		String[] catalina_T= new String[300];
+		String[] estefania_T = new String[300];
+		int m = 0;
+		for ( m = 0; m < 3; m++ ) {
+			if(usuarios[m].equalsIgnoreCase("Martin")) {
+				martin_T[m]= usuarios[m] + ";" + fechas[m] + ";"+ horas[m] + ";" + actividades[m];
+			}else if(usuarios[m].equalsIgnoreCase("catalina")) {
+				catalina_T[m]= usuarios[m] + ";" + fechas[m] + ";"+ horas[m] + ";" + actividades[m];
+			}else if(usuarios[m].equalsIgnoreCase("Estefania")) {
+				estefania_T[m]= usuarios[m] + ";" + fechas[m] + ";"+ horas[m] + ";" + actividades[m];
+			}
+		}	
 		int op_Actividad ;
 		do {
 			int a;
