@@ -160,13 +160,13 @@ public class Main {
 		    int horas = sc.nextInt();
 		    sc.nextLine(); // limpiar buffer
 		    
-		    //Falta control de error por acá pero lo hago después
+		    //Falta control de error por acá pero lo hago despuésD
 
 		    System.out.print("Ingrese actividad: ");
 		    String actividad = sc.nextLine();
 		    
 		    //Acá va el "BuffererWritter" para modificar el archivo
-			BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt", true));
+			BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt", true)); //true mantiene el archivo completo
 		    bw.newLine();
 		    bw.write(nombre+";"+fecha+";"+horas+";"+actividad);
 		    bw.close();
@@ -225,12 +225,13 @@ public class Main {
 			    }
 			}
 			
-			int op = sc.nextInt();
+			int op = sc.nextInt(); //op = linea a modificar 
 	        sc.nextLine(); //Limpiamos
 
 	        if (op == 0) {
 	        	return;
 	        }
+	        
 	        
 	        
 			
