@@ -219,13 +219,21 @@ public class Main {
 		}	
 		int op_Actividad ;
 		do {
-			int a;
 			op_Actividad = sc.nextInt();
 			System.out.println("Cual actividad deseas modificar?");
 			System.out.println("0)Regresar");
-			for (a = 0; a< usuarios.length; a++){ 		
-				System.out.print(a+1 + ")" + usuarios[a]+ ";" + fechas[a] + ";" + horas[a] + ";" + actividades[a]);
-				System.out.println();
+			if (nombre.equalsIgnoreCase("Martin")) {
+				for (a = 0; a< martin_T.length; a++){
+					System.out.println(martin_T[a]+ " ");
+				}
+			}else if (nombre.equalsIgnoreCase("Catalina")) {
+				for (a = 0; a< catalina_T.length; a++){
+					System.out.println(catalina_T[a]);
+				}
+			}else if (nombre.equalsIgnoreCase("Estefania")) {
+				for (a = 0; a< estefania_T.length; a++){
+					System.out.println(estefania_T[a]);
+				}
 			}
 		} while( op_Actividad != 0);
 		
