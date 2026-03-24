@@ -225,16 +225,21 @@ public class Main {
 			    }
 			}
 			
-			int op = sc.nextInt(); //op = linea a modificar 
+			int op = sc.nextInt(); //op = linea a modificar (usaremos el indice)
+	        sc.nextLine(); //Limpiamos
+
+			System.out.println("Que deseas modificar?");
+			System.out.println("0) Regresar."
+					+ "\n1) Fecha"
+					+ "\n2) Duracion"
+					+ "\n3) Tipo de actividad");
+			
+			int op_2= sc.nextInt(); //op_2 lo que quiere modificar (usaremos el indice)
 	        sc.nextLine(); //Limpiamos
 
 	        if (op == 0) {
 	        	return;
 	        }
-	        
-	        
-	        
-			
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el archivo");
         } catch (IOException e) {
