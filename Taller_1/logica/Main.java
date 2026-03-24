@@ -184,5 +184,39 @@ public class Main {
         String[] actividades = new String[300];
 
         int i = 0; //El objetivo es abrir el archivo de nuevo y hacer cambios ahí dentro
+		Scanner lector_Registros = new Scanner(Tregistros);// lee las lineas
+        
+		while (lector_Registros.hasNextLine()) { // lee el archivo
+			String linea = lector_Registros.nextLine();
+			String[] partes = linea.split(";");
+			
+			String usuario= partes[0];
+			usuarios[i] = usuario;
+			
+			String fecha = partes[1];
+			fechas[i] = fecha;
+			
+			String hora = partes[2];
+			horas[i] = hora;
+			
+			String actividad = partes[3];
+			actividades[i] = actividad;
+			
+			i++;}
+		lector_Registros.close();
+		
+		int op_Actividad ;
+		do {
+			int a;
+			op_Actividad = sc.nextInt();
+			System.out.println("Cual actividad deseas modificar?");
+			System.out.println("0)Regresar");
+			for (a = 0; a< usuarios.length; a++){ 		
+				System.out.print(a+1 + ")" + usuarios[a]+ ";" + fechas[a] + ";" + horas[a] + ";" + actividades[a]);
+				System.out.println();
+			}
+		} while( op_Actividad != 0);
+		
+        lector_Registros.close();
 	}
 }
