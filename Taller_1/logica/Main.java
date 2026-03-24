@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 public class Main {
 	public static void main(String[] args) throws IOException  {
 		File Tusuarios = new File("Taller_1/Usuarios.txt");
@@ -146,11 +147,11 @@ public class Main {
 	             * lo reinicia y el "|" es parecido al 'and' del python (espero se haya entendido la explicación)
 	             */
 	            
-	            if (!fecha.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}")) { //Aprobado por el ayudante
+	            if (!fecha.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/20[0-2][0-9]")) { //Aprobado por el ayudante (solo funciona en los años 2000 hasta 2029)
 	                System.out.println("Fecha no válida. Use dd/mm/yyyy (Día 01-31, Mes 01-12)");
 	            }
 	            
-	            } while(!fecha.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}"));
+	            } while(!fecha.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/20[0-2][0-9]"));
 
 	            
 		    
@@ -158,6 +159,8 @@ public class Main {
 		    System.out.print("Ingrese horas: ");
 		    int horas = sc.nextInt();
 		    sc.nextLine(); // limpiar buffer
+		    
+		    //Falta control de error por acá pero lo hago después
 
 		    System.out.print("Ingrese actividad: ");
 		    String actividad = sc.nextLine();
@@ -178,65 +181,63 @@ public class Main {
 	public static void modificarActividad(String nombre, Scanner sc) {
 		
 		//Arreglos de máximo 300 datos (read.me)
-		String[] usuarios = new String[300]; 
-        String[] fechas = new String[300];
-        int[] horas = new int[300];
-        String[] actividades = new String[300];
+	
+        //Dado que el archivo puede no existir usamos try and catch
+        try {
+        	File Tregistros = new File("Taller_1/Registros.txt");
+            Scanner lector = new Scanner(Tregistros);
 
-        int i = 0; //El objetivo es abrir el archivo de nuevo y hacer cambios ahí dentro
-		Scanner lector_Registros = new Scanner(Tregistros);// lee las lineas
-        
-		while (lector_Registros.hasNextLine()) { // lee el archivo
-			String linea = lector_Registros.nextLine();
-			String[] partes = linea.split(";");
+            String[] usuarios = new String[300];
+            String[] fechas = new String[300];
+            String[] horas = new String[300];
+            String[] actividades = new String[300];
+
+            int i = 0;
+
+            //Lectura archivo
+            while (lector.hasNextLine()) {
+                String linea = lector.nextLine();
+                String[] partes = linea.split(";");
+
+                usuarios[i] = partes[0];
+                fechas[i] = partes[1];
+                horas[i] = partes[2];
+                actividades[i] = partes[3];
+
+                i++;
+            }
+            
+            lector.close();
+	
+            int[] indices = new int[300];
+            int contador = 1;
+
+            System.out.println("\n¿Cual actividad deseas modificar?");
+            System.out.println("0) Regresar");
 			
-			String usuario= partes[0];
-			usuarios[i] = usuario;
-			
-			String fecha = partes[1];
-			fechas[i] = fecha;
-			
-			String hora = partes[2];
-			horas[i] = hora;
-			
-			String actividad = partes[3];
-			actividades[i] = actividad;
-			
-			i++;}
-		lector_Registros.close();
-		String[] martin_T= new String[300];
-		String[] catalina_T= new String[300];
-		String[] estefania_T = new String[300];
-		int m = 0;
-		for ( m = 0; m < 3; m++ ) {
-			if(usuarios[m].equalsIgnoreCase("Martin")) {
-				martin_T[m]= usuarios[m] + ";" + fechas[m] + ";"+ horas[m] + ";" + actividades[m];
-			}else if(usuarios[m].equalsIgnoreCase("catalina")) {
-				catalina_T[m]= usuarios[m] + ";" + fechas[m] + ";"+ horas[m] + ";" + actividades[m];
-			}else if(usuarios[m].equalsIgnoreCase("Estefania")) {
-				estefania_T[m]= usuarios[m] + ";" + fechas[m] + ";"+ horas[m] + ";" + actividades[m];
+			for (int j = 0; j < i; j++) { 
+			    if (usuarios[j].equalsIgnoreCase(nombre)) {
+			        System.out.println(contador + ") " +
+			                usuarios[j] + ";" + fechas[j] + ";" + horas[j] + ";" + actividades[j]);
+	
+			        indices[contador] = j;
+			        contador++;
+			    }
 			}
-		}	
-		int op_Actividad ;
-		do {
-			op_Actividad = sc.nextInt();
-			System.out.println("Cual actividad deseas modificar?");
-			System.out.println("0)Regresar");
-			if (nombre.equalsIgnoreCase("Martin")) {
-				for (a = 0; a< martin_T.length; a++){
-					System.out.println(a+1 + ")"+martin_T[a]+ " ");
-				}
-			}else if (nombre.equalsIgnoreCase("Catalina")) {
-				for (a = 0; a< catalina_T.length; a++){
-					System.out.println(a+1 + ")"+catalina_T[a]);
-				}
-			}else if (nombre.equalsIgnoreCase("Estefania")) {
-				for (a = 0; a< estefania_T.length; a++){
-					System.out.println(a+1 + ")"+estefania_T[a]);
-				}
-			}
-		} while( op_Actividad != 0);
-		
-        lector_Registros.close();
-	}
+			
+			int op = sc.nextInt();
+	        sc.nextLine(); //Limpiamos
+
+	        if (op == 0) {
+	        	return;
+	        }
+	        
+	        
+			
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo");
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo");
+        }
+    }
 }
