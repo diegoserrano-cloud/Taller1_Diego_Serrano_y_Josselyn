@@ -236,6 +236,31 @@ public class Main {
 			
 			int op_2= sc.nextInt(); //op_2 lo que quiere modificar (usaremos el indice)
 	        sc.nextLine(); //Limpiamos
+			System.out.println("0) Regresar.");
+	        switch(op_2){
+	        	case 0: 
+	        		break;
+	        	case 1:
+	        		String fecha_Nueva;    
+	    		    do {
+	    		    	System.out.print("Ingrese fecha (dd/mm/yyyy): ");
+	    	            fecha_Nueva= sc.nextLine();
+	    	            
+	    	            if (!fecha_Nueva.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}")) { //Aprobado por el ayudante
+	    	                System.out.println("Fecha no válida. Use dd/mm/yyyy (Día 01-31, Mes 01-12)");
+	    	            }
+	    	            
+	    	            } while(!fecha_Nueva.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}"));
+	    		    break;
+	        	case 2:
+	        		System.out.print("Ingrese duracion: ");
+	        		String duracion_Nueva= sc.nextLine();
+	        		break;
+	        	case 3:
+	        		System.out.print("Ingrese nuevo tipo de actividad: ");
+	        		String actividad_Nueva= sc.nextLine();
+	        		break;
+	        }
 
 	        if (op == 0) {
 	        	return;
