@@ -236,6 +236,9 @@ public class Main {
 			
 			int op_2= sc.nextInt(); //op_2 lo que quiere modificar (usaremos el indice)
 	        sc.nextLine(); //Limpiamos
+
+			BufferedWriter bw = new BufferedWriter(new FileWriter("registros"));//volvemos abrir el archivo para hacer los cambios
+			
 			System.out.println("0) Regresar.");
 	        switch(op_2){
 	        	case 0: 
@@ -251,17 +254,37 @@ public class Main {
 	    	            }
 	    	            
 	    	            } while(!fecha_Nueva.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}"));
+					int indice = indices[op];//usamos los indices guardados previamente
+	    		    fechas[indice]= fecha_Nueva;//cambiamos las fechas en el lugar que corresponde
+	    		    
+	    		    int x;
+	    		    for (x = 0; x<i ; x++) { //agregamos la informacion en el archivo
+		    		    bw.write(usuarios[x] + ";" + fechas[x] + ";" + horas[x] + ";" + actividades[x]);
+		    		    bw.newLine();
+	    		    }
+	    		    System.out.println("Fecha modificada con exito!");
 	    		    break;
 	        	case 2:
 	        		System.out.print("Ingrese duracion: ");
 	        		String duracion_Nueva= sc.nextLine();
+					System.out.println("Duración modificada con exito!");
 	        		break;
 	        	case 3:
 	        		System.out.print("Ingrese nuevo tipo de actividad: ");
 	        		String actividad_Nueva= sc.nextLine();
+					System.out.println("Actividad modificada con exito!");
 	        		break;
 	        }
-
+	        }
+	        bw.close();
+	        int l;
+	        int cont = 1;
+			for ( l = 0; l < i; l++) {
+			        System.out.println(cont + ") " +
+			                usuarios[l] + ";" + fechas[l] + ";" + horas[l] + ";" + actividades[l]); //es para ver si se modifico correctamente
+			        cont++;
+			    
+			}
 	        if (op == 0) {
 	        	return;
 	        }
