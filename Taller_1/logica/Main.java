@@ -254,7 +254,7 @@ public class Main {
 	    	            }
 	    	            
 	    	            } while(!fecha_Nueva.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}"));
-					int indice = indices[op];//usamos los indices guardados previamente
+	    		    int indice = indices[op];//usamos los indices guardados previamente
 	    		    fechas[indice]= fecha_Nueva;//cambiamos las fechas en el lugar que corresponde
 	    		    
 	    		    int x;
@@ -262,21 +262,43 @@ public class Main {
 		    		    bw.write(usuarios[x] + ";" + fechas[x] + ";" + horas[x] + ";" + actividades[x]);
 		    		    bw.newLine();
 	    		    }
+	    		    
 	    		    System.out.println("Fecha modificada con exito!");
+	    		    bw.close();
 	    		    break;
+	    		    
 	        	case 2:
 	        		System.out.print("Ingrese duracion: ");
 	        		String duracion_Nueva= sc.nextLine();
-					System.out.println("Duración modificada con exito!");
+	        		
+	    		    int indice2 = indices[op];//usamos los indices guardados previamente
+	    		    horas[indice2]= duracion_Nueva;//cambiamos las horas en el lugar que corresponde
+	    		    
+	    		    int k;
+	    		    for (k= 0; k<i ; k++) { //agregamos la informacion en el archivo
+		    		    bw.write(usuarios[k] + ";" + fechas[k] + ";" + horas[k] + ";" + actividades[k]);
+		    		    bw.newLine();
+	    		    }
+	        		System.out.println("Duración modificada con exito!");
+	        		bw.close();
 	        		break;
+	        		
 	        	case 3:
 	        		System.out.print("Ingrese nuevo tipo de actividad: ");
 	        		String actividad_Nueva= sc.nextLine();
-					System.out.println("Actividad modificada con exito!");
+	        		
+	    		    int indice3 = indices[op];//usamos los indices guardados previamente
+	    		    actividades[indice3]= actividad_Nueva;//cambiamos las horas en el lugar que corresponde
+	    		    
+	    		    int v;
+	    		    for (v= 0; v<i ; v++) { //agregamos la informacion en el archivo
+		    		    bw.write(usuarios[v] + ";" + fechas[v] + ";" + horas[v] + ";" + actividades[v]);
+		    		    bw.newLine();
+	    		    }
+	        		System.out.println("Actividad modificada con exito!");
+	        		bw.close();
 	        		break;
 	        }
-	        }
-	        bw.close();
 	        int l;
 	        int cont = 1;
 			for ( l = 0; l < i; l++) {
