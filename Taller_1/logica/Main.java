@@ -311,7 +311,9 @@ public class Main {
 	    		    int x;
 	    		    for (x = 0; x<i ; x++) { //agregamos la informacion en el archivo
 		    		    bbbw.write(usuarios[x] + ";" + fechas[x] + ";" + horas[x] + ";" + actividades[x]);
-		    		    bbbw.newLine();
+						if(x< i-1) {
+		    		   		 bbbw.newLine();
+						}
 	    		    }
 	    		    
 	    		    System.out.println("Fecha modificada con exito!");
@@ -347,7 +349,9 @@ public class Main {
 	    		    int k;
 	    		    for (k= 0; k<i ; k++) { //agregamos la informacion en el archivo
 		    		    bw.write(usuarios[k] + ";" + fechas[k] + ";" + horas[k] + ";" + actividades[k]);
-		    		    bw.newLine();
+						if(k< i-1) {
+		    		    	bw.newLine();
+						}
 	    		    }
 	        		System.out.println("Duración modificada con exito!");
 	        		bw.close();
@@ -364,7 +368,9 @@ public class Main {
 	    		    int v;
 	    		    for (v= 0; v<i ; v++) { //agregamos la informacion en el archivo
 		    		    bW.write(usuarios[v] + ";" + fechas[v] + ";" + horas[v] + ";" + actividades[v]);
-		    		    bW.newLine();
+						if(v< i-1) {
+		    		    	bW.newLine();
+						}
 	    		    }
 	        		System.out.println("Actividad modificada con exito!");
 	        		bW.close();
@@ -489,7 +495,9 @@ public class Main {
     		    int h;
     		    for (h= 0; h<i ; h++) { //agregamos la informacion en el archivo
 	    		    bw.write(usuarios[h] + ";" + fechas[h] + ";" + horas[h] + ";" + actividades[h]);
-	    		    bw.newLine();
+					if(h< i-1) {
+	    		    	bw.newLine();
+					}
     		    }
     		    bw.close();
 
@@ -512,7 +520,9 @@ public class Main {
 	    int x;
 	    for (x = 0; x<i ; x++) { //agregamos la informacion en el archivo
 		    bbW.write(nombres[x] + ";" + contraseñas[x]);
-		    bbW.newLine();
+			if(h< i-1) {
+		    	bbW.newLine();
+			}
 	    }
 	    
 	    bbW.close();
