@@ -91,6 +91,7 @@ public class Main {
             	
             	if(condicion) {
 					int opcion_usuario;
+					System.out.println()
 					System.out.println("Acceso correcto!");
             		do { // este do while nos sirve para que el usuario indique cuando quiere salir 
             		
@@ -121,6 +122,9 @@ public class Main {
 					case 3:
             			eliminarActividad(nombre, opcion);
             			break;
+					case 4:
+						cambiarContraseña(nombre, opcion, nombres, contraseñas, indexUsuario, i);
+						break;					
 					}	
             		
             		} while(opcion_usuario != 5);
@@ -303,15 +307,15 @@ public class Main {
 	    		    int indice = indices[op];//usamos los indices guardados previamente
 	    		    fechas[indice]= fecha_Nueva;//cambiamos las fechas en el lugar que corresponde
 	    		    
-	    		    BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));//volvemos abrir el archivo para hacer los cambios
+	    		    BufferedWriter bbbw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));//volvemos abrir el archivo para hacer los cambios
 	    		    int x;
 	    		    for (x = 0; x<i ; x++) { //agregamos la informacion en el archivo
-		    		    bw.write(usuarios[x] + ";" + fechas[x] + ";" + horas[x] + ";" + actividades[x]);
-		    		    bw.newLine();
+		    		    bbbw.write(usuarios[x] + ";" + fechas[x] + ";" + horas[x] + ";" + actividades[x]);
+		    		    bbbw.newLine();
 	    		    }
 	    		    
 	    		    System.out.println("Fecha modificada con exito!");
-	    		    bw.close();
+	    		    bbbw.close();
 	    		    break;
 	    		    
 	        	case 2:
@@ -356,14 +360,14 @@ public class Main {
 	    		    int indice3 = indices[op];//usamos los indices guardados previamente
 	    		    actividades[indice3]= actividad_Nueva;//cambiamos las horas en el lugar que corresponde
 	    		    
-	    		    BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));//volvemos abrir el archivo para hacer los cambios
+	    		    BufferedWriter bW = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));//volvemos abrir el archivo para hacer los cambios
 	    		    int v;
 	    		    for (v= 0; v<i ; v++) { //agregamos la informacion en el archivo
-		    		    bw.write(usuarios[v] + ";" + fechas[v] + ";" + horas[v] + ";" + actividades[v]);
-		    		    bw.newLine();
+		    		    bW.write(usuarios[v] + ";" + fechas[v] + ";" + horas[v] + ";" + actividades[v]);
+		    		    bW.newLine();
 	    		    }
 	        		System.out.println("Actividad modificada con exito!");
-	        		bw.close();
+	        		bW.close();
 	        		break;
 	        	default:
 	        		
@@ -383,7 +387,7 @@ public class Main {
         }
     }
 	
-		private static void eliminarActividad(String nombre, Scanner sc) {
+		public static void eliminarActividad(String nombre, Scanner sc) {
 	        try {
 	        	File Tregistros = new File("Taller_1/Registros.txt");
 	            Scanner lector = new Scanner(Tregistros);
@@ -434,7 +438,31 @@ public class Main {
 	        }catch (IOException e) {
 		            System.out.println("Error al escribir en el archivo");
 		       }
+	}
+	public static void cambiarContraseña(String nombre, Scanner sc, String[] nombres, String[] contraseñas, int indexUsuario, int i) throws IOException  {
+		sc.nextLine();
+		System.out.print("Ingrese nueva contraseña: ");
+		String contraseña_Nueva; 
+		contraseña_Nueva = sc.nextLine();
 		
-        
-	}	
+		contraseñas[indexUsuario] = contraseña_Nueva;
+	    BufferedWriter bbW = new BufferedWriter(new FileWriter("usuarios"));//volvemos abrir el archivo para hacer los cambios
+	    int x;
+	    for (x = 0; x<i ; x++) { //agregamos la informacion en el archivo
+		    bbW.write(nombres[x] + ";" + contraseñas[x]);
+		    bbW.newLine();
+	    }
+	    
+	    bbW.close();
+	   
+		System.out.println("Contraseña nueva modificada con exito!!");
+		
+		int p;
+		for (p = 0; p< nombres.length; p++){ // esto solo es para guiarnos con las contraseñas despues se eliminara
+			System.out.print(nombres[p]+ " ");
+			System.out.print(contraseñas[p]+ " ");
+			System.out.println();
+		}
+		
+	}
 }
