@@ -389,7 +389,7 @@ public class Main {
 	
 		public static void eliminarActividad(String nombre, Scanner sc) {
 	        try {
-	        	File Tregistros = new File("Taller_1/Registros.txt");
+	        	File Tregistros = new File("registros");
 	            Scanner lector = new Scanner(Tregistros);
 	
 	            String[] usuarios = new String[300];
@@ -432,6 +432,68 @@ public class Main {
 				}
 				
 				int op = sc.nextInt(); //op = linea a modificar (usaremos el indice), nos falta control de error
+		
+				if (op == 0) {
+				    return;
+				}
+
+				if (op >= contador) {
+				    System.out.println("Opción inválida.");
+				    return;
+				}
+				
+				int eliminar = indices[op];
+				usuarios[eliminar] = null;
+				fechas[eliminar]= null;
+				horas[eliminar]=null;
+				actividades[eliminar]=null;
+				
+				int e;
+				int r;
+				for(e= 0; e<i ; e++) {
+					if(usuarios[e] == null) {
+						for(r = e+1; r< i; r++, e++ ) {
+							String aux = usuarios[e];
+							usuarios[e] = usuarios[r];
+							usuarios[r]= aux;
+														
+							String x = fechas[e];
+							fechas[e] = fechas[r];
+							fechas[r]= x;
+							
+							String mm = actividades[e];
+							actividades[e] = actividades[r];
+							actividades[r]= mm;
+							
+							String temp = horas[e];
+							horas[e] = horas[r];
+							horas[r]= temp;
+						}
+					}
+				}
+				i--;
+				
+				int contador2 = 1;
+				
+				for (int j = 0; j < i; j++) { //para ver si se elimino la actividad
+				     {
+				        System.out.println(contador2 + ") " +
+				                usuarios[j] + ";" + fechas[j] + ";" + horas[j] + ";" + actividades[j]);
+		
+				        indices[contador2] = j;
+				        contador2++;
+				    }
+				}
+				BufferedWriter bw = new BufferedWriter(new FileWriter("registros"));
+				
+    		    int h;
+    		    for (h= 0; h<i ; h++) { //agregamos la informacion en el archivo
+	    		    bw.write(usuarios[h] + ";" + fechas[h] + ";" + horas[h] + ";" + actividades[h]);
+	    		    bw.newLine();
+    		    }
+    		    bw.close();
+
+				System.out.println("Actividad eliminada correctamente.");
 		        sc.nextLine();
 	    	}catch (FileNotFoundException e) {
 		            System.out.println("No se encontró el archivo");
