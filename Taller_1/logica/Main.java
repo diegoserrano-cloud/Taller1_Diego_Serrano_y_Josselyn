@@ -116,8 +116,11 @@ public class Main {
             		
             		case 2:
             			modificarActividad(nombre, opcion);
-            		}
-            			
+            		
+					case 3:
+            			eliminarActividad(nombre, opcion);
+            			break;
+					}	
             		
             		} while(opcion_usuario != 5);
 				}
@@ -316,4 +319,107 @@ public class Main {
             System.out.println("Error al escribir en el archivo");
         }
     }
+	public static void eliminarActividad(String nombre, Scanner sc) {
+        try {
+        	File Tregistros = new File("registros");
+            Scanner lector = new Scanner(Tregistros);
+
+            String[] usuarios = new String[300];
+            String[] fechas = new String[300];
+            String[] horas = new String[300];
+            String[] actividades = new String[300];
+
+            int i = 0;
+
+            //Lectura archivo
+            while (lector.hasNextLine()) {
+                String linea = lector.nextLine();
+                String[] partes = linea.split(";");
+
+                usuarios[i] = partes[0];
+                fechas[i] = partes[1];
+                horas[i] = partes[2];
+                actividades[i] = partes[3];
+
+                i++;
+            }
+            
+            lector.close();
+          
+            int[] indices = new int[300];
+            int contador = 1;
+
+            System.out.println("\n¿Cual actividad deseas eliminar?");
+            System.out.println("0) Regresar");
+			
+			for (int j = 0; j < i; j++) { 
+			    if (usuarios[j].equalsIgnoreCase(nombre)) {
+			        System.out.println(contador + ") " +
+			                usuarios[j] + ";" + fechas[j] + ";" + horas[j] + ";" + actividades[j]);
+	
+			        indices[contador] = j;
+			        contador++;
+			    }
+			}
+			
+			int op = sc.nextInt(); //op = linea a modificar (usaremos el indice), nos falta control de error
+	        sc.nextLine();
+    	}catch (FileNotFoundException e) {
+	            System.out.println("No se encontró el archivo");
+        } catch (IOException e) {
+	            System.out.println("Error al escribir en el archivo");
+	       }
+		private static void eliminarActividad(String nombre, Scanner sc) {
+        try {
+        	File Tregistros = new File("registros");
+            Scanner lector = new Scanner(Tregistros);
+
+            String[] usuarios = new String[300];
+            String[] fechas = new String[300];
+            String[] horas = new String[300];
+            String[] actividades = new String[300];
+
+            int i = 0;
+
+            //Lectura archivo
+            while (lector.hasNextLine()) {
+                String linea = lector.nextLine();
+                String[] partes = linea.split(";");
+
+                usuarios[i] = partes[0];
+                fechas[i] = partes[1];
+                horas[i] = partes[2];
+                actividades[i] = partes[3];
+
+                i++;
+            }
+            
+            lector.close();
+          
+            int[] indices = new int[300];
+            int contador = 1;
+
+            System.out.println("\n¿Cual actividad deseas eliminar?");
+            System.out.println("0) Regresar");
+			
+			for (int j = 0; j < i; j++) { 
+			    if (usuarios[j].equalsIgnoreCase(nombre)) {
+			        System.out.println(contador + ") " +
+			                usuarios[j] + ";" + fechas[j] + ";" + horas[j] + ";" + actividades[j]);
+	
+			        indices[contador] = j;
+			        contador++;
+			    }
+			}
+			
+			int op = sc.nextInt(); //op = linea a modificar (usaremos el indice), nos falta control de error
+	        sc.nextLine();
+    	}catch (FileNotFoundException e) {
+	            System.out.println("No se encontró el archivo");
+        } catch (IOException e) {
+	            System.out.println("Error al escribir en el archivo");
+	       }
+		
+        
+	}	
 }
