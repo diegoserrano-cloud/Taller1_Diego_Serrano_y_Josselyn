@@ -164,7 +164,7 @@ public class Main {
 		    int horas = sc.nextInt();
 		    sc.nextLine(); // limpiar buffer
 		    
-		    //Falta control de error por acá pero lo hago despuésD
+		    //Falta control de error por acá pero lo hago después
 
 		    System.out.print("Ingrese actividad: ");
 		    String actividad = sc.nextLine();
@@ -229,11 +229,30 @@ public class Main {
 			    }
 			}
 			
-			int op = sc.nextInt(); //op = linea a modificar (usaremos el indice)
-	        sc.nextLine(); //Limpiamos
-	        if (op == 0) {
-	        	return;
-	        }
+			int op;
+
+			while (true) {
+			    System.out.print("Seleccione una opción: ");
+
+			    if (sc.hasNextInt()) {
+			        op = sc.nextInt();
+			        sc.nextLine(); // limpiar
+
+			        if (op == 0) {
+			            return;
+			        }
+
+			        if (op >= 1 && op < contador) {
+			            break; // evitar indices fuera de rango
+			        } else {
+			            System.out.println("Opción fuera de rango");
+			        }
+
+			    } else {
+			        System.out.println("Debe ingresar un número");
+			        sc.next(); // limpiar
+			    }
+			}
 
 			System.out.println("Que deseas modificar?");
 			System.out.println("0) Regresar."
@@ -241,15 +260,35 @@ public class Main {
 					+ "\n2) Duracion"
 					+ "\n3) Tipo de actividad");
 			
-			int op_2= sc.nextInt(); //op_2 lo que quiere modificar (usaremos el indice)
-	        sc.nextLine(); //Limpiamos
+			int op_2;
 
-			BufferedWriter bw = new BufferedWriter(new FileWriter("registros"));//volvemos abrir el archivo para hacer los cambios
+			while (true) {
+			    
+
+			    if (sc.hasNextInt()) {
+			        op_2 = sc.nextInt();
+			        sc.nextLine();
+
+			        if (op_2 == 0) {
+			            return;
+			        }
+
+			        if (op_2 >= 1 && op_2 <= 3) {
+			            break;
+			        } else {
+			            System.out.println("Opción inválida");
+			        }
+
+			    } else {
+			        System.out.println("Debe ingresar un número");
+			        sc.next();
+			    }
+			}
+
 			
-			System.out.println("0) Regresar.");
+			
 	        switch(op_2){
-	        	case 0: 
-	        		return;
+	        	
 	        	case 1:
 	        		String fecha_Nueva;    
 	    		    do {
@@ -264,6 +303,7 @@ public class Main {
 	    		    int indice = indices[op];//usamos los indices guardados previamente
 	    		    fechas[indice]= fecha_Nueva;//cambiamos las fechas en el lugar que corresponde
 	    		    
+	    		    BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));//volvemos abrir el archivo para hacer los cambios
 	    		    int x;
 	    		    for (x = 0; x<i ; x++) { //agregamos la informacion en el archivo
 		    		    bw.write(usuarios[x] + ";" + fechas[x] + ";" + horas[x] + ";" + actividades[x]);
@@ -275,12 +315,31 @@ public class Main {
 	    		    break;
 	    		    
 	        	case 2:
-	        		System.out.print("Ingrese duracion: ");
-	        		String duracion_Nueva= sc.nextLine();
+	        		int horas_Nueva = 0;
+
+	        		while (true) {
+	        		    System.out.print("Ingrese duración (horas): ");
+
+	        		    if (sc.hasNextInt()) {
+	        		        horas_Nueva = sc.nextInt();
+	        		        sc.nextLine(); // limpiar buffer (Pd: tengo malas experiencias ya con esta cosa)
+
+	        		        if (horas_Nueva > 0 && horas_Nueva <= 24) { //Control de error simple, no más de 24 horas (un día)
+	        		            break; 
+	        		        } else {
+	        		            System.out.println("Ingrese un valor entre 1 y 24 horas");
+	        		        }
+
+	        		    } else {
+	        		        System.out.println("Debe ingresar un número válido");
+	        		        sc.next(); // limpiar entrada inválida 
+	        		    }
+	        		}
 	        		
 	    		    int indice2 = indices[op];//usamos los indices guardados previamente
-	    		    horas[indice2]= duracion_Nueva;//cambiamos las horas en el lugar que corresponde
+	    		    horas[indice2]= String.valueOf(horas_Nueva);//cambiamos las horas en el lugar que corresponde
 	    		    
+	    		    BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));//volvemos abrir el archivo para hacer los cambios
 	    		    int k;
 	    		    for (k= 0; k<i ; k++) { //agregamos la informacion en el archivo
 		    		    bw.write(usuarios[k] + ";" + fechas[k] + ";" + horas[k] + ";" + actividades[k]);
@@ -297,6 +356,7 @@ public class Main {
 	    		    int indice3 = indices[op];//usamos los indices guardados previamente
 	    		    actividades[indice3]= actividad_Nueva;//cambiamos las horas en el lugar que corresponde
 	    		    
+	    		    BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));//volvemos abrir el archivo para hacer los cambios
 	    		    int v;
 	    		    for (v= 0; v<i ; v++) { //agregamos la informacion en el archivo
 		    		    bw.write(usuarios[v] + ";" + fechas[v] + ";" + horas[v] + ";" + actividades[v]);
@@ -305,6 +365,8 @@ public class Main {
 	        		System.out.println("Actividad modificada con exito!");
 	        		bw.close();
 	        		break;
+	        	default:
+	        		
 	        }
 	        int l;
 	        int cont = 1;
@@ -320,61 +382,10 @@ public class Main {
             System.out.println("Error al escribir en el archivo");
         }
     }
-	/*
-	public static void eliminarActividad(String nombre, Scanner sc) {
-        try {
-        	File Tregistros = new File("registros");
-            Scanner lector = new Scanner(Tregistros);
-
-            String[] usuarios = new String[300];
-            String[] fechas = new String[300];
-            String[] horas = new String[300];
-            String[] actividades = new String[300];
-
-            int i = 0;
-
-            //Lectura archivo
-            while (lector.hasNextLine()) {
-                String linea = lector.nextLine();
-                String[] partes = linea.split(";");
-
-                usuarios[i] = partes[0];
-                fechas[i] = partes[1];
-                horas[i] = partes[2];
-                actividades[i] = partes[3];
-
-                i++;
-            }
-            
-            lector.close();
-          
-            int[] indices = new int[300];
-            int contador = 1;
-
-            System.out.println("\n¿Cual actividad deseas eliminar?");
-            System.out.println("0) Regresar");
-			
-			for (int j = 0; j < i; j++) { 
-			    if (usuarios[j].equalsIgnoreCase(nombre)) {
-			        System.out.println(contador + ") " +
-			                usuarios[j] + ";" + fechas[j] + ";" + horas[j] + ";" + actividades[j]);
 	
-			        indices[contador] = j;
-			        contador++;
-			    }
-			}
-			
-			int op = sc.nextInt(); //op = linea a modificar (usaremos el indice), nos falta control de error
-	        sc.nextLine();
-    	}catch (FileNotFoundException e) {
-	            System.out.println("No se encontró el archivo");
-        } catch (IOException e) {
-	            System.out.println("Error al escribir en el archivo");
-	       }
-	       */
 		private static void eliminarActividad(String nombre, Scanner sc) {
 	        try {
-	        	File Tregistros = new File("registros");
+	        	File Tregistros = new File("Taller_1/Registros.txt");
 	            Scanner lector = new Scanner(Tregistros);
 	
 	            String[] usuarios = new String[300];
@@ -398,7 +409,8 @@ public class Main {
 	            }
 	            
 	            lector.close();
-	          
+	            
+	            
 	            int[] indices = new int[300];
 	            int contador = 1;
 	
@@ -419,7 +431,7 @@ public class Main {
 		        sc.nextLine();
 	    	}catch (FileNotFoundException e) {
 		            System.out.println("No se encontró el archivo");
-	        } catch (IOException e) {
+	        }catch (IOException e) {
 		            System.out.println("Error al escribir en el archivo");
 		       }
 		
