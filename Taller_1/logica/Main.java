@@ -13,130 +13,188 @@ import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import java.io.*; //Importa todo o algo así (consejo de la ayudantía) 
+
 public class Main {
-	public static void main(String[] args) throws IOException  {
-		File Tusuarios = new File("Taller_1/Usuarios.txt");
-		File Tregistros = new File("Taller_1/Registros.txt");
-		Scanner lector = new Scanner(Tusuarios);// lee las lineas
-		String[] nombres= {"", "", ""};
-		String[] contraseñas= {"", "", ""};
-		int i = 0;
-		while (lector.hasNextLine()) { // lee el archivo
-			String linea = lector.nextLine();
-			String[] partes = linea.split(";");
-			String nombrer= partes[0];
-			nombres[i] = nombrer;
-			String contraseña = partes[1];
-			contraseñas[i] = contraseña;
-			if (i < 3) {
-				i++;}
-		}
-		int a;
-		for (a = 0; a< nombres.length; a++){ // esto solo es para guiarnos con las contraseñas despues se eliminara
-			System.out.print(nombres[a]+ " ");
-			System.out.print(contraseñas[a]+ " ");
-			System.out.println();
-		}
+	public static void main(String[] args) throws IOException {
+	    File Tusuarios = new File("Taller_1/Usuarios.txt");
+	    File Tregistros = new File("Taller_1/Registros.txt");
+	    Scanner lector = new Scanner(Tusuarios); // lee las lineas
+	    
+	    String[] nombres = {"", "", ""};
+	    String[] contraseñas = {"", "", ""};
+	    int i = 0;
 
-		Scanner opcion = new Scanner(System.in);
-		
-		int op;
-		
-		/*
-		 * Control de error:
-		 *	 primero realizamos nuestro menú de opciones
-		 *	 en este caso usamos un do-while para que cada vez que el usuario ponga un valor distinto a 3  
-		 * 	 el programa vuelva al inicio
-		 */
-		
-		do {
-			
-			System.out.println("1) Menú de usuarios " //Preferencia personal para separar el menú de forma más legible
-					+ "\n2) Menú de Analisis" 
-					+ "\n3) Salir"
-					
-					);
-			if (opcion.hasNextInt()) { //Comprueba si es entero
-                op = opcion.nextInt(); 
-            } else {
-                System.out.println("Ingrese un número válido"); //si es carácter arrojamos el mensaje
-                opcion.next(); // Reiniciamos la variable 
-                op = 0; // Valor por defecto
-            }	
-			
-			//Aquí vamos a hacer un Switch case (para los números del menú)
-			switch(op) {
-			case 1: 
-            	opcion.nextLine();
-            	System.out.print("Usuario: ");
-            	String nombre = opcion.nextLine(); // segun el nombre que nos den usamos la contraseña
-            	boolean condicion = false;
+	    while (lector.hasNextLine()) { // lee el archivo de Usuarios.txt
+	        String linea = lector.nextLine();
+	        String[] partes = linea.split(";");
+	        nombres[i] = partes[0];
+	        contraseñas[i] = partes[1];
+	        if (i < nombres.length) { // Ajustado a 2 para no desbordar el array de tamaño 3 (osea el tamaño de los nombres)
+	            i++;
+	        }
+	    }
 
-            	System.out.print("Contraseña: ");
-            	String contraseña = opcion.nextLine();
-            	
-            	int indexUsuario = -1; //Guardamos la posición para cambiar registros en el futuro
+	    int a;
+	    for (a = 0; a < nombres.length; a++) { // esto solo es para guiarnos con las contraseñas despues se eliminara
+	        System.out.print(nombres[a] + " ");
+	        System.out.print(contraseñas[a] + " ");
+	        System.out.println();
+	    }
 
-            	for (int j = 0; j < nombres.length; j++) {
-            	    if (nombre.equalsIgnoreCase(nombres[j]) && contraseña.equals(contraseñas[j])) {
-            	        condicion = true;
-            	        indexUsuario = j;
-            	        break;
-            	    }
-            	}
+	    Scanner opcion = new Scanner(System.in);
+	    int op = 0;
 
-            	if (!condicion) { 
-            	    System.out.println("Usuario o contraseña incorrectos\n");
-            	}
-            	
-            	if(condicion) {
-					int opcion_usuario;
-					System.out.println();
-					System.out.println("Acceso correcto!");
-            		do { // este do while nos sirve para que el usuario indique cuando quiere salir 
-            		
-            		System.out.println();
-            		System.out.println("Bienvenido " + nombre + "!");
-            		System.out.println();
-            		System.out.println("Que deseas realizar?");
-            		System.out.println();
-            		System.out.println("1) Registrar actividad. " 
-        					+ "\n2) Modificar actividad." 
-        					+ "\n3) Eliminar actividad."
-        					+ "\n4) Cambiar contraseña."
-        					+ "\n5) Salir.");
-            		System.out.println();
-            		
-            		opcion_usuario = opcion.nextInt();
-            		
-            		switch (opcion_usuario) {
-            		
-            		case 1:
-            			registrarActividad(nombre, opcion);
-            			break;
-            		
-            		case 2:
-            			modificarActividad(nombre, opcion);
-            			break;
-            		
-					case 3:
-            			eliminarActividad(nombre, opcion);
-            			break;
-					case 4:
-						cambiarContraseña(nombre, opcion, nombres, contraseñas, indexUsuario, i);
-						break;					
-					}	
-            		
-            		} while(opcion_usuario != 5);
-				}
-			//case 2:
-				//Aquí va el menú de analisis
-			}
-		} while (op != 3);
-			
-		opcion.close();
-		
+	    /*
+	    * Control de error:
+	    * primero realizamos nuestro menú de opciones
+	    * en este caso usaremos un do-while para que cada vez que el usuario ponga un valor distinto a 3
+	    * el programa vuelva al inicio
+	    */
+	    
+	    do {
+	        System.out.println("1) Menú de usuarios " 
+	                + "\n2) Menú de Analisis" 
+	                + "\n3) Salir\n");
+
+	        if (opcion.hasNextInt()) {
+	            op = opcion.nextInt();
+	        } else {
+	            System.out.println("Ingrese un número válido");
+	            opcion.next(); 
+	            op = 0; 
+	        }
+
+	        switch (op) {
+	            case 1:
+	                opcion.nextLine(); // Limpiar buffer
+	                System.out.print("Usuario: ");
+	                String nombre = opcion.nextLine();
+	                
+	                System.out.print("Contraseña: ");
+	                String contraseña = opcion.nextLine();
+	                
+	                boolean condicion = false;
+	                int indexUsuario = -1; 
+
+	                for (int j = 0; j < nombres.length; j++) {
+	                    if (nombre.equalsIgnoreCase(nombres[j]) && contraseña.equals(contraseñas[j])) {
+	                        condicion = true;
+	                        indexUsuario = j;
+	                        break;
+	                    }
+	                }
+
+	                if (!condicion) {
+	                    System.out.println("Usuario o contraseña incorrectos\n");
+	                } else {
+	                    System.out.println("\nAcceso correcto!");
+	                    int opcion_usuario;
+	                    do {
+	                        System.out.println("\nBienvenido " + nombre + "!");
+	                        System.out.println("Que deseas realizar?\n");
+	                        System.out.println("1) Registrar actividad." 
+	                                + "\n2) Modificar actividad." 
+	                                + "\n3) Eliminar actividad."
+	                                + "\n4) Cambiar contraseña."
+	                                + "\n5) Salir.");
+	                        
+	                        opcion_usuario = opcion.nextInt();
+
+	                        switch (opcion_usuario) {
+	                            case 1: registrarActividad(nombre, opcion); 
+	                            	break;
+	                            case 2: modificarActividad(nombre, opcion);
+	                            	break;
+	                            case 3: eliminarActividad(nombre, opcion); 
+	                            	break;
+	                            case 4: cambiarContraseña(nombre, opcion, nombres, contraseñas, indexUsuario, i); 
+	                            	break;
+	                        }
+	                    } while (opcion_usuario != 5);
+	                }
+	                break; // Cierre case 1
+
+	            case 2:
+	            	//Definimos dimensión
+	                String[] usuarios = new String[300];
+	                String[] fechas = new String[300];
+	                String[] horas = new String[300];
+	                String[] actividades = new String[300];
+	                int c = 0;
+	                
+	                //Lectura de archivo
+	                Scanner lector2 = new Scanner(Tregistros);
+	                while (lector2.hasNextLine()) {
+	                    String linea = lector2.nextLine(); 
+	                    String[] partes2 = linea.split(";");
+	                    usuarios[c] = partes2[0];
+	                    fechas[c] = partes2[1];
+	                    horas[c] = partes2[2];
+	                    actividades[c] = partes2[3];
+	                    c++;
+	                }
+	                lector2.close(); //Cierre del lector
+
+	                
+	                int opcionMenu; //Entrar al ciclo
+	                do {
+	                	System.out.println("Bienvenido al menu de analisis!\n"
+	                			+ "\nQué deseas realizar?\n");
+	                	System.out.println("1) Actividad más realizada"
+	                			+ "\n2) Actividad más realizada por cada usuario"
+	                			+ "\n3) Usuario con mayor procastinacion"
+	                			+ "\n4) Ver todas las actividades"
+	                			+ "\n5) Salir");
+	                	opcionMenu = opcion.nextInt();
+	                	
+		                switch (opcionMenu) {
+		                    case 1: 
+		                    	//En proceso
+		                    	
+		                    	/*
+		                    	 * Comentario: creo que está logica no funciona para todos los casos
+		                    	 * así que después voy a crear una parecida pero con un arreglo de 300 datos
+		                    	 * cosa de que cada vez que lo encuentré se crea una lista paralela que guarda las horas y al final comparo
+		                    	 */
+		                        String actividadMayor = "";
+		                        int horasMayor = 0;
+		                        for (int k = 0; k < i; k++) {
+		                            int suma = 0;
+
+		                            for (int b = 0; b < i; b++) {
+		                                if (actividades[k].equalsIgnoreCase(actividades[b])) {
+		                                    suma += Integer.parseInt(horas[b]);
+		                                }
+		                            }
+
+		                            if (suma > horasMayor) {
+		                                horasMayor = suma;
+		                                actividadMayor = actividades[a];
+		                            }
+		                        }
+
+		                        System.out.println("Actividad más realizada: " + actividadMayor + " con " + horasMayor + " horas");
+		                        break;
+		                    case 2:
+		                    	//Pendiente
+		                    	break;
+		                    case 3:
+		                    	//Pendiente
+		                    	break;
+		                    case 4:
+		                    	//Pendiente
+		                    	break;
+		                }
+		                break; 
+	                } while (opcionMenu != 5);
+		        }
+	    } while (op != 3);
+
+	    opcion.close();
 	}
+		
 	
 	public static void registrarActividad(String nombre, Scanner sc) { //Scanner sc es para reutilizarlo (porqué ya existe)
 		try {
@@ -559,4 +617,6 @@ public class Main {
 		}
 		
 	}
+	
+	
 }
