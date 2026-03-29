@@ -181,8 +181,9 @@ public class Main {
 		                    	
 		                    	System.out.println("Actividades mas realizadas por cada usuario: ");
 		                    	System.out.println();
+								//Las listas que crearemos serán para acumular cada actividad sin repetir en su respectivo usuarios
 		                    	String[] martin_Actividades= new String[300];
-		                    	int[] horas_Martin = new int[300];
+		                    	int[] horas_Martin = new int[300];//acumula las horas sin repetir
 		                    	int cont_M = 0;// nos serviran para que cada vez que se agrege una actividad nueva se vaya contando
 		                    	
 		                    	String[] catalina_Actividad= new String[300];
