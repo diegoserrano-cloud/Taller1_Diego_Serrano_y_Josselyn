@@ -260,66 +260,12 @@ public class Main {
 
 		                        System.out.println("Actividad más realizada: " + actividadMayor + " con " + maximo + " horas");
 		                        break;
+								
 		                    case 2:
 		                    	
 		                    	System.out.println("Actividades mas realizadas por cada usuario: ");
 		                    	System.out.println();
-								
-								//usaremos las variables anteriores
-		                    	
-		                    	for(z= 0; z < c ; z++) { //recorre las listas totales
-		                    		if(usuarios[z].equalsIgnoreCase("Martin")){
-		                    			int idx_M = -1;
-		                    			int m;
-		                    			for(m=0; m<cont_M; m++) {//recorre las listas de cada usuarios 
-		                    				if (martin_Actividades[m].equalsIgnoreCase(actividades[z])) {
-		                    					idx_M = m;
-		                    	                break;
-		                    	            }
-		                    			}if (idx_M != -1) {
-		                    				horas_Martin[idx_M] += Integer.parseInt(horas[z]);//si ya existe la actividad, acumulamos las horas
-		                    			}else {
-		                    				horas_Martin[cont_M] = Integer.parseInt(horas[z]);
-		                    				martin_Actividades[cont_M] = actividades[z];//si no existe la agregamos
-		                    				cont_M ++;
-		                    			}
-		                    		
-		                    		//Se hace lo mismo para cada usuario	
-		                    		}else if (usuarios[z].equalsIgnoreCase("Catalina")){
-		                    			int idx_C = -1;
-		                    			int y;
-		                    			
-		                    			for(y=0; y<cont_C; y++) {
-		                    				if (catalina_Actividad[y].equalsIgnoreCase(actividades[z])) {
-		                    					idx_C = y;
-		                    	                break;
-		                    	            }
-		                    			}if (idx_C != -1) {
-		                    				horas_Catalina[idx_C] += Integer.parseInt(horas[z]);
-		                    			}else {
-		                    				horas_Catalina[cont_C] = Integer.parseInt(horas[z]);
-		                    				catalina_Actividad[cont_C] = actividades[z];
-		                    				cont_C++;
-		                    			}	
-		                    			
-		                    				
-		                    		}else if(usuarios[z].equalsIgnoreCase("Estefania")){
-		                    			int idx_E = -1;
-		                    			int s;
-		                    			for(s=0; s<cont_E; s++) {
-		                    				if (estefania_Actividad[s].equalsIgnoreCase(actividades[z])) {
-		                    					idx_E = s;
-		                    	                break;
-		                    	            }
-		                    			}if (idx_E != -1) {
-		                    				horas_Estefania[idx_E] += Integer.parseInt(horas[z]);
-		                    			}else {
-		                    				horas_Estefania[cont_E] = Integer.parseInt(horas[z]);
-		                    				estefania_Actividad[cont_E] = actividades[z];
-		                    				cont_E++;
-		                    			}
-		                    		}
-		                    	}
+
 		                    		
 		                    		//Como ya tenemos todas las actividades y horas acumuladas
 		                    		//bucaremos el mayor de las horas y el nombre de las actividades
