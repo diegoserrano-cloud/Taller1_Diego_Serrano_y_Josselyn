@@ -388,7 +388,6 @@ public class Main {
 		try {
 			sc.nextLine(); //Limpia
 			
-			System.out.print("Ingrese fecha (dd/mm/yyyy): ");
 		    String fecha;
 		    
 		    do {
@@ -705,15 +704,25 @@ public class Main {
 				    }
 				}
 				
-				int op = sc.nextInt(); //op = linea a modificar (usaremos el indice), nos falta control de error
-		
-				if (op == 0) {
-				    return;
-				}
+				int op = -1;
 
-				if (op >= contador && op <= 0) {
-				    System.out.println("Opción inválida.");
-				    return;
+				while (true) { //Control de error simple
+				    try {
+				        op = sc.nextInt();
+				        sc.nextLine();
+
+				        if (op == 0) return;
+
+				        if (op <= 0 || op >= contador) {
+				            System.out.println("Opción fuera de rango");
+				        } else {
+				            break;
+				        }
+
+				    } catch (Exception e) {
+				        System.out.println("Debe ingresar un número válido");
+				        sc.nextLine();
+				    }
 				}
 				
 				int eliminar = indices[op];
