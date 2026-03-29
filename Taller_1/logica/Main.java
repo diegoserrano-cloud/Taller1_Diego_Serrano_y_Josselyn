@@ -53,17 +53,30 @@ public class Main {
 	                + "\n2) Menú de Analisis" 
 	                + "\n3) Salir\n");
 
-	        if (opcion.hasNextInt()) {
-	            op = opcion.nextInt();
-	        } else {
-	            System.out.println("Ingrese un número válido");
-	            opcion.next(); 
-	            op = 0; 
+	       
+	        while (true) {
+	            System.out.print("Seleccione una opción: ");
+
+	            try {
+	                op = opcion.nextInt();
+	                
+
+	                if (op >= 1 && op <= 3) {
+	                	opcion.nextLine(); // Limpiar buffer
+	                    break;
+	                } else {
+	                    System.out.println("Opción fuera de rango (1-3)");
+	                }
+
+	            } catch (Exception e) {
+	                System.out.println("Debe ingresar un número válido");
+	                opcion.nextLine(); // limpiar entrada inválida
+	            }
 	        }
 
 	        switch (op) {
 	            case 1:
-	                opcion.nextLine(); // Limpiar buffer
+	                
 	                System.out.print("Usuario: ");
 	                String nombre = opcion.nextLine();
 	                
@@ -96,7 +109,8 @@ public class Main {
 	                                + "\n5) Salir.");
 	                        
 	                        opcion_usuario = opcion.nextInt();
-
+	                        
+	                       
 	                        switch (opcion_usuario) {
 	                            case 1: registrarActividad(nombre, opcion); 
 	                            	break;
@@ -106,6 +120,10 @@ public class Main {
 	                            	break;
 	                            case 4: cambiarContraseña(nombre, opcion, nombres, contraseñas, indexUsuario, i); 
 	                            	break;
+	                            case 5:
+	                            	System.out.println("Salida exitosa!");
+	                            	break;
+	                            
 	                        }
 	                    } while (opcion_usuario != 5);
 	                }
@@ -206,6 +224,10 @@ public class Main {
 					
 	                
 	                int opcionMenu; //Entrar al ciclo
+	                
+	                
+
+	                
 	                do {
 	                	System.out.println("Bienvenido al menu de analisis!\n"
 	                			+ "\nQué deseas realizar?\n");
@@ -214,7 +236,27 @@ public class Main {
 	                			+ "\n3) Usuario con mayor procastinacion"
 	                			+ "\n4) Ver todas las actividades"
 	                			+ "\n5) Salir");
-	                	opcionMenu = opcion.nextInt();
+	                	
+	                	
+	                	while (true) {
+		    	            System.out.print("Seleccione una opción: ");
+
+		    	            try {
+		    	                opcionMenu = opcion.nextInt();
+		    	                
+
+		    	                if (opcionMenu >= 1 && opcionMenu <= 5) {
+		    	                	opcion.nextLine(); // Limpiar buffer
+		    	                    break;
+		    	                } else {
+		    	                    System.out.println("Opción fuera de rango (1-3)");
+		    	                }
+
+		    	            } catch (Exception e) {
+		    	                System.out.println("Debe ingresar un número válido");
+		    	                opcion.nextLine(); // limpiar entrada inválida
+		    	            }
+		    	        }
 	                	
 		                switch (opcionMenu) {
 		                    case 1: 
@@ -364,8 +406,8 @@ public class Main {
 		                    	
 		                    	int mm;
 		                    	for (mm = 0; mm < c; mm++) {
-		            			      System.out.println("- " +
-		            			                usuarios[mm] + ";" + fechas[mm] + ";" + horas[mm] + ";" + actividades[mm]);
+		            			      System.out.println("- Usuario: " +
+		            			                usuarios[mm] + "\t | Fecha: " + fechas[mm] + "\t | Cantidad de horas: " + horas[mm] + "\t | Actividad: " + actividades[mm]);
 		            			    }
 		            			System.out.println();
 		                    	break;
