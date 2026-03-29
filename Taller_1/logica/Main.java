@@ -178,8 +178,117 @@ public class Main {
 		                        System.out.println("Actividad más realizada: " + actividadMayor + " con " + horasMayor + " horas");
 		                        break;
 		                    case 2:
-		                    	//Pendiente
+		                    	
+		                    	System.out.println("Actividades mas realizadas por cada usuario: ");
+		                    	System.out.println();
+		                    	String[] martin_Actividades= new String[300];
+		                    	int[] horas_Martin = new int[300];
+		                    	int cont_M = 0;// nos serviran para que cada vez que se agrege una actividad nueva se vaya contando
+		                    	
+		                    	String[] catalina_Actividad= new String[300];
+		                    	int[] horas_Catalina = new int[300];	
+		                    	int cont_C = 0;
+		                    	
+		                    	String[] estefania_Actividad= new String[300];
+		                    	int[] horas_Estefania = new int[300];
+		                    	int cont_E = 0;
+		                    	
+		                    	int z;
+		                    	for(z= 0; z < c ; z++) { //recorre las listas totales
+		                    		if(usuarios[z].equalsIgnoreCase("Martin")){
+		                    			int idx_M = -1;
+		                    			int m;
+		                    			for(m=0; m<cont_M; m++) {//recorre las listas de cada usuarios 
+		                    				if (martin_Actividades[m].equalsIgnoreCase(actividades[z])) {
+		                    					idx_M = m;
+		                    	                break;
+		                    	            }
+		                    			}if (idx_M != -1) {
+		                    				horas_Martin[idx_M] += Integer.parseInt(horas[z]);//si ya existe la actividad acumulamos las horas
+		                    			}else {
+		                    				horas_Martin[cont_M] = Integer.parseInt(horas[z]);
+		                    				martin_Actividades[cont_M] = actividades[z];//si no existe la agregamos
+		                    				cont_M ++;
+		                    			}
+		                    			
+		                    			
+		                    			
+		                    		//Se hace lo mismo para cada usuario	
+		                    		}else if (usuarios[z].equalsIgnoreCase("Catalina")){
+		                    			int idx_C = -1;
+		                    			int y;
+		                    			
+		                    			for(y=0; y<cont_C; y++) {
+		                    				if (catalina_Actividad[y].equalsIgnoreCase(actividades[z])) {
+		                    					idx_C = y;
+		                    	                break;
+		                    	            }
+		                    			}if (idx_C != -1) {
+		                    				horas_Catalina[idx_C] += Integer.parseInt(horas[z]);
+		                    			}else {
+		                    				horas_Catalina[cont_C] = Integer.parseInt(horas[z]);
+		                    				catalina_Actividad[cont_C] = actividades[z];
+		                    				cont_C++;
+		                    			}	
+		                    			
+		                    				
+		                    		}else if(usuarios[z].equalsIgnoreCase("Estefania")){
+		                    			int idx_E = -1;
+		                    			int s;
+		                    			for(s=0; s<cont_E; s++) {
+		                    				if (estefania_Actividad[s].equalsIgnoreCase(actividades[z])) {
+		                    					idx_E = s;
+		                    	                break;
+		                    	            }
+		                    			}if (idx_E != -1) {
+		                    				horas_Estefania[idx_E] += Integer.parseInt(horas[z]);
+		                    			}else {
+		                    				horas_Estefania[cont_E] = Integer.parseInt(horas[z]);
+		                    				estefania_Actividad[cont_E] = actividades[z];
+		                    				cont_E++;
+		                    			}
+		                    		}
+		                    	}
+		                    		
+		                    		//Como ya tenemos todas las actividades y horas acumuladas
+		                    		//bucaremos el mayor de las horas y el nombre de las actividades
+		                    		int horas_M = 0;
+		                    		String ac_M = "";
+		                    		
+		                    		int horas_C = 0;
+		                    		String ac_C = "";
+		                    		
+		                    		int horas_E = 0;
+		                    		String ac_E = "";
+		                    		
+		                    		int q;
+		                    		for (q = 0; q < cont_M ; q++) {
+		                    			if(horas_Martin[q] > horas_M) {
+		                    				horas_M = horas_Martin[q];
+		                    				ac_M = martin_Actividades[q];
+		                    			}
+		                    		}
+		                    		int j;
+		                    		for(j=0; j < cont_E; j++) {
+		                    			if(horas_Estefania[j] > horas_E) {
+		                    				horas_E = horas_Estefania[j];
+		                    				ac_E = estefania_Actividad[j];
+		                    			}
+		                    		}
+		                    		int u;
+		                    		for(u= 0; u< cont_C ; u++) {
+		                    			if(horas_Catalina[u] > horas_C) {
+		                    				horas_C = horas_Catalina[u];
+		                    				ac_C = catalina_Actividad[u];
+		                    			}
+		                    		}
+		                    		
+		                    	System.out.println("* Martin"+  " -> " + ac_M +" -> "+"con " + horas_M + " horas registradas");
+		                    	System.out.println("* Estefania"+ " -> "  + ac_E +" -> "+ "con "+ horas_E+ " horas registradas");
+		                    	System.out.println("* Catalina"+" -> "  + ac_C +" -> "+ "con "+ horas_C+ " horas registradas");
+		                    	System.out.println();
 		                    	break;
+								
 		                    case 3:
 		                    	//Pendiente
 		                    	break;
@@ -187,7 +296,7 @@ public class Main {
 		                    	//Pendiente
 		                    	break;
 		                }
-		                break; 
+		                
 	                } while (opcionMenu != 5);
 		        }
 	    } while (op != 3);
