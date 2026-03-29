@@ -136,7 +136,79 @@ public class Main {
 	                    c++;
 	                }
 	                lector2.close(); //Cierre del lector
-
+					
+					//los vectores nos ayudaran para los casos
+                	//los vectores que crearemos serán para acumular cada actividad sin repetir de su respectivo usuarios
+                	String[] martin_Actividades= new String[300];
+                	int[] horas_Martin = new int[300];//acumula las horas sin repetir
+                	int cont_M = 0;// nos serviran para que cada vez que se agrege una actividad nueva se vaya contando
+                	
+                	String[] catalina_Actividad= new String[300];
+                	int[] horas_Catalina = new int[300];	
+                	int cont_C = 0;
+                	
+                	String[] estefania_Actividad= new String[300];
+                	int[] horas_Estefania = new int[300];
+                	int cont_E = 0;
+	                
+                	//Para poder hacer el caso 2 y 3 necesitamos las variables como los cont y vectores
+                	int z;
+                	for(z= 0; z < c ; z++) { //recorre los vectores totales
+                		if(usuarios[z].equalsIgnoreCase("Martin")){
+                			int idx_M = -1;
+                			int m;
+                			for(m=0; m<cont_M; m++) {   //recorre los vectores de cada usuarios 
+                				if (martin_Actividades[m].equalsIgnoreCase(actividades[z])) {
+                					idx_M = m;
+                	                break;
+                	            }
+                			}if (idx_M != -1) {
+                				horas_Martin[idx_M] += Integer.parseInt(horas[z]);//si ya existe la actividad acumulamos las horas
+                			}else {
+                				horas_Martin[cont_M] = Integer.parseInt(horas[z]);
+                				martin_Actividades[cont_M] = actividades[z];//si no existe la agregamos
+                				cont_M ++;
+                			}
+                			
+                			
+                			
+                		//Se hace lo mismo para cada usuario	
+                		}else if (usuarios[z].equalsIgnoreCase("Catalina")){
+                			int idx_C = -1;
+                			int y;
+                			
+                			for(y=0; y<cont_C; y++) {
+                				if (catalina_Actividad[y].equalsIgnoreCase(actividades[z])) {
+                					idx_C = y;
+                	                break;
+                	            }
+                			}if (idx_C != -1) {
+                				horas_Catalina[idx_C] += Integer.parseInt(horas[z]);
+                			}else {
+                				horas_Catalina[cont_C] = Integer.parseInt(horas[z]);
+                				catalina_Actividad[cont_C] = actividades[z];
+                				cont_C++;
+                			}	
+                			
+                				
+                		}else if(usuarios[z].equalsIgnoreCase("Estefania")){
+                			int idx_E = -1;
+                			int s;
+                			for(s=0; s<cont_E; s++) {
+                				if (estefania_Actividad[s].equalsIgnoreCase(actividades[z])) {
+                					idx_E = s;
+                	                break;
+                	            }
+                			}if (idx_E != -1) {
+                				horas_Estefania[idx_E] += Integer.parseInt(horas[z]);
+                			}else {
+                				horas_Estefania[cont_E] = Integer.parseInt(horas[z]);
+                				estefania_Actividad[cont_E] = actividades[z];
+                				cont_E++;
+                			}
+                		}
+                	}
+					
 	                
 	                int opcionMenu; //Entrar al ciclo
 	                do {
@@ -181,19 +253,8 @@ public class Main {
 		                    	
 		                    	System.out.println("Actividades mas realizadas por cada usuario: ");
 		                    	System.out.println();
-								//Las listas que crearemos serán para acumular cada actividad sin repetir en su respectivo usuarios
-		                    	String[] martin_Actividades= new String[300];
-		                    	int[] horas_Martin = new int[300];//acumula las horas sin repetir
-		                    	int cont_M = 0;// nos serviran para que cada vez que se agrege una actividad nueva se vaya contando
-		                    	
-		                    	String[] catalina_Actividad= new String[300];
-		                    	int[] horas_Catalina = new int[300];	
-		                    	int cont_C = 0;
-		                    	
-		                    	String[] estefania_Actividad= new String[300];
-		                    	int[] horas_Estefania = new int[300];
-		                    	int cont_E = 0;
-		                    	
+								
+								//usaremos las variables anteriores
 		                    	int z;
 		                    	for(z= 0; z < c ; z++) { //recorre las listas totales
 		                    		if(usuarios[z].equalsIgnoreCase("Martin")){
@@ -205,15 +266,13 @@ public class Main {
 		                    	                break;
 		                    	            }
 		                    			}if (idx_M != -1) {
-		                    				horas_Martin[idx_M] += Integer.parseInt(horas[z]);//si ya existe la actividad acumulamos las horas
+		                    				horas_Martin[idx_M] += Integer.parseInt(horas[z]);//si ya existe la actividad, acumulamos las horas
 		                    			}else {
 		                    				horas_Martin[cont_M] = Integer.parseInt(horas[z]);
 		                    				martin_Actividades[cont_M] = actividades[z];//si no existe la agregamos
 		                    				cont_M ++;
 		                    			}
-		                    			
-		                    			
-		                    			
+		                    		
 		                    		//Se hace lo mismo para cada usuario	
 		                    		}else if (usuarios[z].equalsIgnoreCase("Catalina")){
 		                    			int idx_C = -1;
@@ -291,8 +350,61 @@ public class Main {
 		                    	break;
 								
 		                    case 3:
-		                    	//Pendiente
+								
+		                    	//Utilizaremos las variables anteriores (cont y horas acumuladas)
+		                    	
+		                    	int suma_Martin=0;
+		                    	int suma_Catalina= 0;
+		                    	int suma_Estefania = 0;
+		                    	
+		                    	//los for que utilizaremos seran para recorrer cada vector  
+		                    	int t;
+		                    	for(t=0; t < cont_M; t++) {
+		                    		suma_Martin += horas_Martin[t];
+		                    		
+		                    	}
+		                    	int w;
+		                    	for(w=0; w < cont_C; w++) {
+		                    		suma_Catalina += horas_Catalina[w];
+		                    	}
+		                    	int ñ;
+		                    	for(ñ=0; ñ < cont_E; ñ++) {
+		                    		suma_Estefania += horas_Estefania[ñ];
+		                    	}
+		               
+		                    	int mayor= 0;
+		                   
+		                    	int h;
+		                    	
+		                    	for (h = 0; h < i; h++) {
+		                    		if(mayor < suma_Martin) {
+		                    			mayor = suma_Martin;
+		                    			
+		                    			
+		                    		}else if(mayor < suma_Catalina){
+		                    			mayor = suma_Catalina;
+		                    			
+		                    			
+		                    		}else if(mayor < suma_Estefania) {
+		                    			mayor= suma_Estefania;
+		                    			
+		                    		}
+		                    	}
+		                    	System.out.println("El/los usuario(s) con mayor procrastinación:");	
+		                    	if(mayor == suma_Martin) {
+	                    			System.out.println("- Martin con " + suma_Martin + " horas");
+	                    		
+	                    		}if(mayor == suma_Catalina){
+	                    			System.out.println("- Catalina con " + suma_Catalina + " horas");
+	                    			
+	                    			
+	                    		}if(mayor == suma_Estefania) {
+	                    			System.out.println("- Estefania con " + suma_Estefania + " horas");
+	                    			
+	                    		}System.out.println();
 		                    	break;
+
+								
 		                    case 4:
 		                    	//Pendiente
 		                    	break;
