@@ -430,10 +430,16 @@ public class Main {
     		        sc.next(); // limpiar entrada inválida 
     		    }
     		}
-		    //Falta control de error por acá pero lo hago después
-
-		    System.out.print("Ingrese actividad: ");
-		    String actividad = sc.nextLine();
+		    
+		    String actividad = "";
+		    do {
+		    	System.out.print("Ingrese actividad: ");
+		    	actividad = sc.nextLine();
+		    	
+		    	if (actividad.trim().isEmpty()) {
+		    		System.out.println("La actividad no puede ser vacia"); //La función .trim() realiza lo mismo que .strip() en Python
+		    	}
+		    } while (actividad.trim().isEmpty());
 		    
 		    //Acá va el "BuffererWritter" para modificar el archivo
 			BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt", true)); //true mantiene el archivo completo
@@ -788,9 +794,16 @@ public class Main {
 	}
 	public static void cambiarContraseña(String nombre, Scanner sc, String[] nombres, String[] contraseñas, int indexUsuario, int i) throws IOException  {
 		sc.nextLine();
-		System.out.print("Ingrese nueva contraseña: ");
 		String contraseña_Nueva; 
-		contraseña_Nueva = sc.nextLine();
+		
+		do {
+			System.out.print("Ingrese nueva contraseña: ");
+			contraseña_Nueva = sc.nextLine();
+			
+			if (contraseña_Nueva.trim().isEmpty()) {
+				System.out.println("La contraseña al menos debe contener un carácter.");
+				}
+			} while (contraseña_Nueva.trim().isEmpty());
 		
 		contraseñas[indexUsuario] = contraseña_Nueva;
 	    BufferedWriter bbW = new BufferedWriter(new FileWriter("Taller_1/Usuarios.txt"));//volvemos abrir el archivo para hacer los cambios

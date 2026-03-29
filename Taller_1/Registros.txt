@@ -195,3 +195,4 @@ Martin;05/05/2026;2;estudiar
 Catalina;05/05/2026;1;programar
 Estefania;05/05/2026;2;Ver mlp
 Catalina;06/05/2026;6;Ser Batman por el día
+martin;17/12/2026;3;ser therian
