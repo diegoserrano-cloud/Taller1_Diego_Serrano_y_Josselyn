@@ -223,31 +223,42 @@ public class Main {
 	                	
 		                switch (opcionMenu) {
 		                    case 1: 
-		                    	//En proceso
-		                    	
-		                    	/*
-		                    	 * Comentario: creo que está logica no funciona para todos los casos
-		                    	 * así que después voy a crear una parecida pero con un arreglo de 300 datos
-		                    	 * cosa de que cada vez que lo encuentré se crea una lista paralela que guarda las horas y al final comparo
-		                    	 */
-		                        String actividadMayor = "";
-		                        int horasMayor = 0;
-		                        for (int k = 0; k < i; k++) {
-		                            int suma = 0;
-
-		                            for (int b = 0; b < i; b++) {
-		                                if (actividades[k].equalsIgnoreCase(actividades[b])) {
-		                                    suma += Integer.parseInt(horas[b]);
-		                                }
-		                            }
-
-		                            if (suma > horasMayor) {
-		                                horasMayor = suma;
-		                                actividadMayor = actividades[a];
-		                            }
+		                    	String[] actividadUnicas = new String[300];
+		                        int[] horasTotales = new int[300];
+		                        
+		                        int contador = 0; 
+		                        
+		                        for (int x = 0; x < c; x++) {
+		                        	boolean existe = false;
+		                        	
+		                        	for (int y = 0; y < contador; y++) {
+		                        		if (actividades[x].equalsIgnoreCase(actividadUnicas[y])) {
+		                        			horasTotales[y] += Integer.parseInt(horas[x]);
+		                        			existe = true;
+		                        			break;
+		                        		}
+		                        	}
+		                        	
+	                        		if (!existe) {
+	                                    actividadUnicas[contador] = actividades[x];
+	                                    horasTotales[contador] = Integer.parseInt(horas[x]);
+	                                    contador++;
+	                        		}
 		                        }
+		                        
+		                        int maximo = 0;
+		                        String actividadMayor = "";
+		                        
+		                        for (int u = 0; u < contador ; u++) {
+		                        	if (horasTotales[u] > maximo) {
+		                        		maximo = horasTotales[u];
+		                        		actividadMayor = actividadUnicas[u];
+		                        	}
+		                        }
+		                        
+		                        
 
-		                        System.out.println("Actividad más realizada: " + actividadMayor + " con " + horasMayor + " horas");
+		                        System.out.println("Actividad más realizada: " + actividadMayor + " con " + maximo + " horas");
 		                        break;
 		                    case 2:
 		                    	
@@ -255,7 +266,7 @@ public class Main {
 		                    	System.out.println();
 								
 								//usaremos las variables anteriores
-		                    	int z;
+		                    	
 		                    	for(z= 0; z < c ; z++) { //recorre las listas totales
 		                    		if(usuarios[z].equalsIgnoreCase("Martin")){
 		                    			int idx_M = -1;
@@ -390,6 +401,7 @@ public class Main {
 		                    			
 		                    		}
 		                    	}
+		                    	
 		                    	System.out.println("El/los usuario(s) con mayor procrastinación:");	
 		                    	if(mayor == suma_Martin) {
 	                    			System.out.println("- Martin con " + suma_Martin + " horas");
