@@ -36,12 +36,7 @@ public class Main {
 	        }
 	    }
 
-	    int a;
-	    for (a = 0; a < nombres.length; a++) { // esto solo es para guiarnos con las contraseñas despues se eliminara
-	        System.out.print(nombres[a] + " ");
-	        System.out.print(contraseñas[a] + " ");
-	        System.out.println();
-	    }
+	    
 
 	    Scanner opcion = new Scanner(System.in);
 	    int op = 0;
@@ -548,11 +543,21 @@ public class Main {
 			        if (op_2 >= 1 && op_2 <= 3) {
 			            break;
 			        } else {
-			            System.out.println("Opción inválida");
+			            System.out.println("Opción inválida.\n");
+			            System.out.println("Que deseas modificar?");
+						System.out.println("0) Regresar."
+								+ "\n1) Fecha"
+								+ "\n2) Duracion"
+								+ "\n3) Tipo de actividad");
 			        }
 
 			    } else {
-			        System.out.println("Debe ingresar un número");
+			        System.out.println("Debe ingresar un número.\n");
+			        System.out.println("Que deseas modificar?");
+					System.out.println("0) Regresar."
+							+ "\n1) Fecha"
+							+ "\n2) Duracion"
+							+ "\n3) Tipo de actividad");
 			        sc.next();
 			    }
 			}
@@ -651,14 +656,8 @@ public class Main {
 	        	default:
 	        		
 	        }
-	        int l;
-	        int cont = 1;
-			for ( l = 0; l < i; l++) {
-			        System.out.println(cont + ") " +
-			                usuarios[l] + ";" + fechas[l] + ";" + horas[l] + ";" + actividades[l]); //es para ver si se modifico correctamente
-			        cont++;
-			    
-			}
+	        
+			
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el archivo");
         } catch (IOException e) {
@@ -720,7 +719,8 @@ public class Main {
 				        if (op == 0) return;
 
 				        if (op <= 0 || op >= contador) {
-				            System.out.println("Opción fuera de rango");
+				            System.out.println("Opción fuera de rango.");
+				            return;
 				        } else {
 				            break;
 				        }
@@ -762,17 +762,6 @@ public class Main {
 				}
 				i--;
 				
-				int contador2 = 1;
-				
-				for (int j = 0; j < i; j++) { //para ver si se elimino la actividad
-				     {
-				        System.out.println(contador2 + ") " +
-				                usuarios[j] + ";" + fechas[j] + ";" + horas[j] + ";" + actividades[j]);
-		
-				        indices[contador2] = j;
-				        contador2++;
-				    }
-				}
 				BufferedWriter bw = new BufferedWriter(new FileWriter("Taller_1/Registros.txt"));
 				
     		    int h;
@@ -785,7 +774,7 @@ public class Main {
     		    bw.close();
 
 				System.out.println("\nActividad eliminada correctamente.");
-		        sc.nextLine();
+		        
 	    	}catch (FileNotFoundException e) {
 		            System.out.println("No se encontró el archivo");
 	        }catch (IOException e) {
@@ -819,12 +808,6 @@ public class Main {
 	   
 		System.out.println("Contraseña nueva modificada con exito!!");
 		
-		int p;
-		for (p = 0; p< nombres.length; p++){ // esto solo es para guiarnos con las contraseñas despues se eliminara
-			System.out.print(nombres[p]+ " ");
-			System.out.print(contraseñas[p]+ " ");
-			System.out.println();
-		}
 		
 	}
 	
