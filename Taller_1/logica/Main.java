@@ -406,7 +406,15 @@ public class Main {
 
 								
 		                    case 4:
-		                    	//Pendiente
+		                    	System.out.println();
+		                    	System.out.println("Actividades registradas: ");
+		                    	
+		                    	int mm;
+		                    	for (mm = 0; mm < c; mm++) {
+		            			      System.out.println("- " +
+		            			                usuarios[mm] + ";" + fechas[mm] + ";" + horas[mm] + ";" + actividades[mm]);
+		            			    }
+		            			System.out.println();
 		                    	break;
 		                }
 		                
