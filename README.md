@@ -12,3 +12,15 @@ Este proyecto nace de la necesidad de crear un sistema debido a una falla en la 
 - Nombre Completo: Josselyn Barraza Yáñez
   - RUT: 22.246.539-7
   - GitHub:  
+
+## Estructura del proyecto
+
+- Taller1_Diego_Serrano_y_Josselyn/
+    - src
+        - module-info.java
+    - Taller_1
+        - Logica
+            - Main.java
+            - package-info.java
+        - Registros.txt
+        - Usuarios.txt
