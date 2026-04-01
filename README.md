@@ -27,17 +27,16 @@ Este proyecto nace de la necesidad de crear un sistema debido a una falla en la 
 ## Instrucciones de ejecución
 
 - Requisitos previos:
-      -- Tener instalado un entorno de desarrollo como Eclipse.
+      - Tener instalado un entorno de desarrollo como Eclipse.
   
 - Ejecución del programa:
-      -- Para ejecutar el programa, se debe abrir el proyecto en Eclipse y ejecutar la clase principal (Main).
-         Luego, el sistema mostrará un menú interactivo, dónde el usuario debe ingresar una opción, en caso de la opción uno deberá                 validar un perfil. Y para el análisis no deberá registrarse, solo tendrá que seleccionar la opcion (el número) correspondiente.
+        - Para ejecutar el programa, se debe abrir el proyecto en Eclipse y ejecutar la clase principal (Main). Luego, el sistema mostrar un menú interactivo, dónde el usuario debe ingresar una opción, en caso de la opción uno deberá validar un perfil. Y para el análisis no deberá registrarse, solo tendrá que seleccionar la opcion (el número) correspondiente.
   
 - Finalizacion del programa:
-      --Para finalizar la ejecución, el usuario debe seleccionar la opción de salida ingresando el número indicado en el menú.
+      - Para finalizar la ejecución, el usuario debe seleccionar la opción de salida ingresando el número indicado en el menú.
   
 - Archivos adicionales:
-      --En la carpeta del repositorio se incluyen los archivos:
-          ---"Registros.txt"
-          --- "Usuarios.txt"
+      *En la carpeta del repositorio se incluyen los archivos:
+      - "Registros.txt"
+      - "Usuarios.txt"
       
