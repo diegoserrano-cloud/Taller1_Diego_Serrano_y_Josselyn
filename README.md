@@ -11,7 +11,7 @@ Este proyecto nace de la necesidad de crear un sistema debido a una falla en la 
 
 - Nombre Completo: Josselyn Barraza Yáñez
   - RUT: 22.246.539-7
-  - GitHub:  
+  - GitHub: josselynbarraza-sys
 
 ## Estructura del proyecto
 
@@ -24,3 +24,20 @@ Este proyecto nace de la necesidad de crear un sistema debido a una falla en la 
             - package-info.java
         - Registros.txt
         - Usuarios.txt
+## Instrucciones de ejecución
+
+- Requisitos previos:
+      Tener instalado un entorno de desarrollo como Eclipse.
+  
+- Ejecución del programa:
+      Para ejecutar el programa, se debe abrir el proyecto en Eclipse y ejecutar la clase principal (Main).
+      Luego, el sistema mostrará un menú donde el usuario deberá seleccionar una opción ingresando el número correspondiente.
+  
+- Finalizacion del programa:
+      Para finalizar la ejecución, el usuario debe seleccionar la opción de salida ingresando el número indicado en el menú.
+  
+- Archivos adicionales:
+      En la carpeta del repositorio se incluyen los archivos:
+      - Registros.txt
+      - Usuarios.txt
+      
