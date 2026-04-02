@@ -108,8 +108,28 @@ public class Main {
 	                                + "\n4) Cambiar contraseña."
 	                                + "\n5) Salir.");
 	                        
-	                        opcion_usuario = opcion.nextInt();
 	                        
+	                        //control de error opcion usuario
+	                        while (true) {
+	            	            System.out.print("Seleccione una opción: ");
+
+	            	            try {
+	            	                opcion_usuario = opcion.nextInt();
+	            	                
+
+	            	                if (op >= 1 && op <= 5) {
+	            	                	opcion.nextLine(); // Limpiar buffer
+	            	                    break;
+	            	                } else {
+	            	                    System.out.println("Opción fuera de rango (1-5)");
+	            	                }
+
+	            	            } catch (Exception e) {
+	            	                System.out.println("Debe ingresar un número válido\n");
+	            	                opcion.nextLine(); // limpiar entrada inválida
+	            	                
+	            	            }
+	            	        }
 	                       
 	                        switch (opcion_usuario) {
 	                            case 1: registrarActividad(nombre, opcion); 
@@ -121,7 +141,7 @@ public class Main {
 	                            case 4: cambiarContraseña(nombre, opcion, nombres, contraseñas, indexUsuario, i); 
 	                            	break;
 	                            case 5:
-	                            	System.out.println("Salida exitosa!");
+	                            	System.out.println("Salida exitosa!\n");
 	                            	break;
 	                            
 	                        }
@@ -406,8 +426,10 @@ public class Main {
 		                    	
 		                    	int mm;
 		                    	for (mm = 0; mm < c; mm++) {
-		            			      System.out.println("- Usuario: " +
-		            			                usuarios[mm] + "\t | Fecha: " + fechas[mm] + "\t | Cantidad de horas: " + horas[mm] + "\t | Actividad: " + actividades[mm]);
+		            			      System.out.println("- Usuario: " + usuarios[mm] + ""
+		            			                		+ "\t | Fecha: " + fechas[mm] + ""
+		            			                		+ "\t | Cantidad de horas: " + horas[mm] + ""
+		            			                		+ "\t | Actividad: " + actividades[mm]);
 		            			    }
 		            			System.out.println();
 		                    	break;
@@ -824,7 +846,7 @@ public class Main {
 		       }
 	}
 	public static void cambiarContraseña(String nombre, Scanner sc, String[] nombres, String[] contraseñas, int indexUsuario, int i) throws IOException  {
-		sc.nextLine();
+		
 		String contraseña_Nueva; 
 		
 		do {
